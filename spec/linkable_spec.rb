@@ -66,6 +66,28 @@ RSpec.describe Linkable do
       expect(urls).to include underscored
     end
 
+  describe "String#replace_urls" do
+    let(:text) { "Please follow me on twitter http://twitter.com/zeeraw" }
+    subject(:replaced) { text.replace_urls { |url| "<a href='#{ url }'>@#{ url.path[1..-1] }</a>" } }
+    it "converts urls with block" do
+      expect(replaced).to include "<a href='http://twitter.com/zeeraw'>@zeeraw</a>"
+    end
+    it "duplicates the string" do
+      expect(text.link.object_id).to_not match text.object_id
+    end
+  end
+
+  describe "String#replace_urls!" do
+    let(:text) { "Please follow me on twitter http://twitter.com/zeeraw" }
+    subject(:replaced) { text.replace_urls! { |url| "<a href='#{ url }'>@#{ url.path[1..-1] }</a>" } }
+    it "converts urls with block" do
+      expect(replaced).to include "<a href='http://twitter.com/zeeraw'>@zeeraw</a>"
+    end
+    it "manipulates the string" do
+      expect(text.link!.object_id).to match text.object_id
+    end
+  end
+
   end
 
 end
