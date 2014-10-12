@@ -3,11 +3,15 @@ Parsing libraries been getting outdated as the web evolve. Linkable takes a scal
 
 ## Usage
 
+#### Require the library
 ```ruby
 require "linkable"
+```
 
-string = "Have you heard that github.com/zeeraw/linkable will detect your proprietary://special.snowflake.domain domain."
-string.urls
+#### List all urls in a string
+```ruby
+text = "Have you heard that github.com/zeeraw/linkable will detect your proprietary://special.snowflake.domain domain."
+text.urls
 # => [#<URI::Generic URL:github.com/zeeraw/linkable>, #<URI::Generic proprietary://special.snowflake.domain>]
 ```
 
