@@ -8,7 +8,7 @@ require "linkable"
 
 string = "Have you heard that github.com/zeeraw/linkable will detect your proprietary://special.snowflake.domain domain."
 string.urls
-# => ["github.com/zeeraw/linkable", "proprietary://special.snowflake.domain"]
+# => [#<URI::Generic URL:github.com/zeeraw/linkable>, #<URI::Generic proprietary://special.snowflake.domain>]
 ```
 
 ## Installation

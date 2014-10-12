@@ -19,42 +19,42 @@ RSpec.describe Linkable do
 
     subject(:urls) { text.urls }
 
-    let(:domain) { "www.domain.com" }
+    let(:domain) { URI::parse "www.google.com" }
     it "parses domain" do
       expect(urls).to include domain
     end
 
-    let(:apex_domain) { "domain.com?foo=bar" }
+    let(:apex_domain) { URI::parse "loopia.se?foo=bar" }
     it "parses apex domain" do
       expect(urls).to include apex_domain
     end
 
-    let(:subdomain) { "sub.domain.com" }
+    let(:subdomain) { URI::parse "api.github.com" }
     it "parses subdomain" do
       expect(urls).to include subdomain
     end
 
-    let(:multiple_subdomains) { "second.sub.doma.in/foo/bar?baz=biz" }
+    let(:multiple_subdomains) { URI::parse "site.stage.internal.net/path/to?my=variable" }
     it "parses multiple subdomains" do
       expect(urls).to include multiple_subdomains
     end
 
-    let(:complex_hostname) { "domain.w1th-d4shes-4nd-numbe.rs" }
+    let(:complex_hostname) { URI::parse "14m.t00-c00l-4-sch00l.ninja" }
     it "parses complex hostnames" do
       expect(urls).to include complex_hostname
     end
 
-    let(:custom_schema) { "protocol://with.domain.com?queries=too" }
+    let(:custom_schema) { URI::parse "winzip://with.domain.com?queries=too" }
     it "parses custom schema" do
       expect(urls).to include custom_schema
     end
 
-    let(:schema_relative) { "//with.domain.com?queries=too" }
+    let(:schema_relative) { URI::parse "//with.domain.com?queries=too" }
     it "parses schema relative" do
       expect(urls).to include schema_relative
     end
 
-    let(:url_in_query_parameters) { "domain.w1th-d4shes-4nd-numbe.rs/foobar?is=http://www.another-domain.com" }
+    let(:url_in_query_parameters) { URI::parse "domain.w1th-d4shes-4nd-numbe.rs/foobar?is=http://www.another-domain.com" }
     it "parses domain in query parameters" do
       expect(urls).to include url_in_query_parameters
     end
