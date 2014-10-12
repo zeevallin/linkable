@@ -15,6 +15,12 @@ text.urls
 # => [#<URI::Generic URL:github.com/zeeraw/linkable>, #<URI::Generic proprietary://special.snowflake.domain>]
 ```
 
+#### Replace urls with link tags
+```ruby
+"Follow me on twitter http://twitter.com/zeeraw".link
+# => "Follow me on twitter <a href='http://twitter.com/zeeraw'>http://twitter.com/zeeraw</a>"
+```
+
 #### Replace urls manually
 ```ruby
 text = "Follow me on twitter http://twitter.com/zeeraw"
