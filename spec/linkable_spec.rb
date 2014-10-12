@@ -13,6 +13,8 @@ RSpec.describe Linkable do
     Schema relative URLs are pretty common these days, if you need it, we got it #{ schema_relative }
 
     And for the grand finale is when you put another domain in the query params #{ url_in_query_parameters } WOW!"
+
+    While something like #{ underscored } is not matched due to underscores.
   ) }
 
   describe "String#urls" do
@@ -57,6 +59,11 @@ RSpec.describe Linkable do
     let(:url_in_query_parameters) { URI::parse "domain.w1th-d4shes-4nd-numbe.rs/foobar?is=http://www.another-domain.com" }
     it "parses domain in query parameters" do
       expect(urls).to include url_in_query_parameters
+    end
+
+    let(:underscored) { URI::parse "try.under_score.app" }
+    it "parses underscores" do
+      expect(urls).to include underscored
     end
 
   end
